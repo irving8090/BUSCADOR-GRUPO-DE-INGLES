@@ -1,0 +1,7 @@
+
+CREDENCIALES
+
+$host="bjohwe8vm61kbnfrkwag-mysql.services.clever-cloud.com";
+        $bd="bjohwe8vm61kbnfrkwag";
+        $user="u3qw6pxykxnipvvc";
+        $pass="FnysIoVLqCcV66MWVeTf";
