@@ -34,6 +34,7 @@ body{
     font-size: 24px;
 }
 </style>";
+        require_once "conexion.php";
 
 if(isset($_FILES['archivo'])) {
     $archivo = $_FILES['archivo']['tmp_name'];
@@ -43,7 +44,7 @@ if(isset($_FILES['archivo'])) {
     } else {
         $csvData = file_get_contents($archivo);
 
-        require_once "conexion.php";
+        
 
         $conexion = conectar();
         
