@@ -100,11 +100,11 @@ if(isset($_FILES['archivo'])) {
 
             if (count($datos) == count($campos)) {
                 $campos = implode(', ', $datos);
-                $valores = implode(', ', array_map(function($campo) { return ':' . $campo; }, $datos));
+                $valores = implode(', ', array_map(function($campos) { return ':' . $campos; }, $datos));
                 $insertarRegistro = mysqli_prepare($conexion, "INSERT INTO $tabla ($campos) VALUES ($valores)");
 
             // Asignar los valores a las variables
-                foreach ($datos as $campo => $valor) {
+                foreach ($datos as $campos => $valor) {
                 mysqli_stmt_bind_param($insertarRegistro, 's', $valor);
                 }
 
