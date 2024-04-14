@@ -38,6 +38,7 @@ $usuarios1 = ControladorFormularios::ctrSeleccionarRegistrosAdmin(null,null);
             <input id="file-upload" name="archivo" type="file" style="display: none;" accept=".csv"/>
             <div id="info"></div>
             <input id="Enviar" type="submit" value="Enviar">
+         <p>Al momento de ingreso de datos dentro del archivo no debe tener saltos de linea de entre una caracteristica a otra</p>
         </form>
         <br>
 
