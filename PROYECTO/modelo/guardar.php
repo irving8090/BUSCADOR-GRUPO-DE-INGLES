@@ -33,6 +33,13 @@ body{
     color: green;
     font-size: 24px;
 }
+.boton {
+   padding: 10px;
+   background-color: red;
+   color: white;
+}
+echo '<a href="../index.php" class="boton">VOLVER</a>';
+
 </style>";
         require_once "conexion.php";
 
@@ -92,8 +99,17 @@ if(isset($_FILES['archivo'])) {
             $datos = str_getcsv($linea, ",");
 
             if (count($datos) == count($campos)) {
-                $valores = "'" . implode("','", $datos) . "'";
-                $insertarRegistro = mysqli_query($conexion, "INSERT INTO $tabla (" . implode(',', $campos) . ") VALUES ($valores)");
+                $campos = implode(', ', $datos);
+                $valores = implode(', ', array_map(function($campo) { return ':' . $campo; }, $datos));
+                $insertarRegistro = mysqli_prepare($conexion, "INSERT INTO $tabla ($campos) VALUES ($valores)");
+
+            // Asignar los valores a las variables
+                foreach ($datos as $campo => $valor) {
+                mysqli_stmt_bind_param($insertarRegistro, 's', $valor);
+                }
+
+                // Ejecutar la sentencia preparada
+                mysqli_stmt_execute($insertarRegistro);
 
                 if (!$insertarRegistro) {
                     echo "<div class='mensaje error'>Error al insertar registros: " . mysqli_error($conexion) . "</div>";
