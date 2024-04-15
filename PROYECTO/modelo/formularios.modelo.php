@@ -29,7 +29,7 @@ require_once "conexion.php";
             $sql1=="SELECT * FROM $tabla1 where usuario.email='$valor1'";
             $stmt1 = Conexion::conectar()->prepare($sql1);
               $stmt1->bind_param("s", $valor1);
-            $stmt1->execute(array($valor1));
+            $stmt1->execute();
             return $stmt->fetch();
         } 
         }
