@@ -13,6 +13,7 @@ require_once "conexion.php";
         if ($item == null && $valor == null) {
             $sql="SELECT * FROM $tabla where alumno.matricula='$valor'";
             $stmt = Conexion::conectar()->prepare($sql);
+            $stmt->bind_param("s", $valor);
             $stmt->execute();
             return $stmt->fetch();
         } 
@@ -27,6 +28,7 @@ require_once "conexion.php";
             if($item1 == null && $valor1 == null){
             $sql1=="SELECT * FROM $tabla1 where usuario.email='$valor1'";
             $stmt1 = Conexion::conectar()->prepare($sql1);
+              $stmt1->bind_param("s", $valor1);
             $stmt1->execute(array($valor1));
             return $stmt->fetch();
         } 
